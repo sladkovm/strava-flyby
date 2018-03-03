@@ -14,52 +14,44 @@ import pandas as pd
 
 
 def flyby(activity_id):
-    """"""
+    """Find flybys for a given activity
 
-    fb = Flyby()
-    fb.get(activity_id)
+    Parameters
+    ----------
+    activity_id : int
+        Strava activity id
 
-    return fb
+    Returns
+    -------
+    obj : Flyby
+    """
+    __base_url = 'https://nene.strava.com/flyby/matches/'
+    r = requests.get('{}{}'.format(__base_url, activity_id))
+
+    if r.ok:
+
+        content = json.loads(r.text)
+        return Flyby(content)
+
+    else:
+
+        raise ConnectionError("Flyby returned {}".format(r.status_code))
 
 
 class Flyby():
-    """Access to Strava Flyby"""
+    """Results of Flyby search"""
 
-    __base_url = 'https://nene.strava.com/flyby/matches/'
+    def __init__(self, content=None):
+        """Create Flyby object
 
-
-    def __init__(self):
-
-        self.content = None
-
-
-    def get(self, activity_id):
-        """Make a request to Flyby
+        Objects should be initialized using the factory flyby(activity_id) function
 
         Parameters
         ----------
-        activity_id : int
-
-        Returns
-        -------
-        self : Flyby
-            self.content has dict_keys(['activity', 'matches', 'athletes'])
-
+        content : dict
         """
 
-        r = requests.get('{}{}'.format(self.__base_url, activity_id))
-
-        if r.ok:
-
-            rv = json.loads(r.text)
-
-            self.content = rv
-
-        else:
-
-            raise ConnectionError("Flyby returned {}".format(r.status_code))
-
-        return self
+        self.content = content
 
 
     def to_json(self, path_or_buf=None, **kwargs):

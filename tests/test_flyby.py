@@ -2,7 +2,7 @@ import pytest
 import json
 import os
 import httpretty
-from flyby import Flyby
+from flyby import Flyby, flyby
 
 
 @pytest.fixture
@@ -17,7 +17,7 @@ def flyby_response():
     return rv
 
 
-def test_constructor():
+def test_constructor_with_none():
 
     fb = Flyby()
 
@@ -27,8 +27,20 @@ def test_constructor():
     assert fb.athletes is None
 
 
+def test_constructor_with_real_data(flyby_response):
+
+    expected = json.loads(flyby_response)
+
+    fb = Flyby(expected)
+
+    assert fb.content == expected
+    assert fb.activity == expected['activity']
+    assert fb.matches == expected['matches']
+    assert fb.athletes == expected['athletes']
+
+
 @httpretty.activate
-def test_get(flyby_response):
+def test_flyby(flyby_response):
 
     test_id = 12345
     httpretty.register_uri(httpretty.GET, "https://nene.strava.com/flyby/matches/{}".format(test_id),
@@ -37,8 +49,7 @@ def test_get(flyby_response):
 
     expected = json.loads(flyby_response)
 
-    fb = Flyby()
-    fb = fb.get(test_id)
+    fb = flyby(test_id)
 
     assert fb.content == expected
     assert fb.activity == expected['activity']
