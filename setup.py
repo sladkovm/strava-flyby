@@ -75,9 +75,9 @@ setup(
     author=AUTHOR,
     author_email=EMAIL,
     url=URL,
-    packages=find_packages(exclude=('tests',)),
+    # packages=find_packages(exclude=('tests',)),
     # If your package is a single module, use this instead of 'packages':
-    # py_modules=['mypackage'],
+    py_modules=['flyby'],
 
     # entry_points={
     #     'console_scripts': ['mycli=mymodule:cli'],
@@ -94,9 +94,6 @@ setup(
         'Operating System :: OS Independent',
         'Development Status :: 3 - Alpha',
         'Intended Audience :: Developers',
-        'Intended Audience :: Education',
-        'Intended Audience :: Healthcare Industry',
-        'Intended Audience :: Science/Research',
         'Topic :: Scientific/Engineering',
     ],
     # $ setup.py publish support.

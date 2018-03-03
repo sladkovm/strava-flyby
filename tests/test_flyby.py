@@ -2,7 +2,7 @@ import pytest
 import json
 import os
 import httpretty
-from flyby.flyby import Flyby
+from flyby import Flyby
 
 
 @pytest.fixture
