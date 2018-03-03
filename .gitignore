@@ -1,1 +1,4 @@
 .idea/
+build/
+dist/
+strava_flyby.egg-info/
