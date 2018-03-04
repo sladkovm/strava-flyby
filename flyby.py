@@ -57,21 +57,6 @@ class Flyby():
     def to_json(self, path_or_buf=None, **kwargs):
         """Dump flattened results into json or a list
 
-        Flattened results will have following keys:
-            dict_keys([
-                'activityType',
-                'athleteId',
-                'closestDistance',
-                'closestPoint',
-                'correlation',
-                'distance',  # in meters
-                'elapsedTime',  # in seconds
-                'id',
-                'name',  #Activity name
-                'spatialCorrelation',
-                'startTime'  #seconds since epoch
-                ])
-
         Parameters
         ----------
         path_or_buf : file path, optional
@@ -86,16 +71,9 @@ class Flyby():
         None or list
         """
 
-        df = pd.DataFrame(self._flatten())
+        df = pd.DataFrame(self._flatten_matches())
 
-        if kwargs.get('distance', None):
-
-            rv = df[(df['distance'] > (1.0 - kwargs.get('tol', 0.1)) * kwargs.get('distance') * 1000) &
-                      (df['distance'] > (1.0 - kwargs.get('tol', 0.1)) * kwargs.get('distance') * 1000)]
-
-        else:
-
-            rv = df
+        rv = df[self._distance_filter(**kwargs)]
 
         if path_or_buf:
 
@@ -121,22 +99,60 @@ class Flyby():
         list
         """
 
-        df = pd.DataFrame(self._flatten())
+        df = pd.DataFrame(self._flatten_matches())
 
-        if kwargs.get('distance', None):
-            return df[(df['distance'] > (1.0 - kwargs.get('tol', 0.1)) * kwargs.get('distance') * 1000) &
-                      (df['distance'] > (1.0 - kwargs.get('tol', 0.1)) * kwargs.get('distance') * 1000)]['id'].tolist()
+        return df[self._distance_filter(**kwargs)]['id'].tolist()
+
+
+
+    def _distance_filter(self, **kwargs):
+        """
+
+        Parameters
+        ----------
+        distance : number or a tuple, optional
+            If number, than distance is treated as a center distance and the range
+            is calculated as `distance` +/- `tol`*`distance`
+            If tuple, than the tuple is treated as a range
+        tol : float, optional
+            Only relevant with center distance, default=0.1
+
+        Returns
+        -------
+        pd.Series
+        """
+
+        df = pd.DataFrame(self._flatten_matches())
+
+        if not kwargs.get('distance', None):
+
+            return df['distance'] > -1
+
+        if (type(kwargs.get('distance')) == int) or (type(kwargs.get('distance')) == float):
+
+            rv = ((df['distance'] > (1.0 - kwargs.get('tol', 0.1)) * kwargs.get('distance') * 1000) &
+                  (df['distance'] < (1.0 + kwargs.get('tol', 0.1)) * kwargs.get('distance') * 1000))
+
+        elif type(kwargs.get('distance')) == tuple:
+
+            rv = ((df['distance'] > kwargs.get('distance')[0] * 1000) &
+                  (df['distance'] < kwargs.get('distance')[1] * 1000))
 
         else:
-            return df['id'].tolist()
+
+            raise ValueError("Distance must be either a number or a tuple of numbers")
+
+        return rv
 
 
-    def _flatten(self):
-        """Flatten the matches dict
+    def _flatten_matches(self):
+        """Convert all matches into flat dict
 
         Returns
         -------
         dict
+            With keys: ['activityType', 'athleteId', 'closestDistance', 'closestPoint',
+                'correlation', 'distance', 'elapsedTime', 'id', 'name', 'spatialCorrelation', 'startTime' ]
         """
 
         rv = []
