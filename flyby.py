@@ -54,8 +54,23 @@ class Flyby():
         self.content = content
 
 
+    def to_list(self, **kwargs):
+        """Dump flattened matches into a list
+
+        Parameters
+        ----------
+        kwargs : see to_json
+
+        Returns
+        -------
+        list
+        """
+
+        return self.to_json(**kwargs)
+
+
     def to_json(self, path_or_buf=None, **kwargs):
-        """Dump flattened results into json or a list
+        """Dump flattened matches into json or a list
 
         Parameters
         ----------

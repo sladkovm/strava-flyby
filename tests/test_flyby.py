@@ -43,6 +43,17 @@ def test_constructor_with_real_data(flyby_response):
     assert fb._distance_filter(distance=100, tol=0.05).sum() == 68
     assert fb._distance_filter(distance=(90, 110)).sum() == 222
 
+    assert len(fb.ids()) == 751
+    assert len(fb.ids(distance=100)) == 222
+    assert len(fb.ids(distance=100, tol=0.05)) == 68
+    assert len(fb.ids(distance=(90, 110), tol=0.05)) == 222
+
+    assert len(fb.to_json()) == 751
+    assert len(fb.to_json(distance=100)) == 222
+
+    assert len(fb.to_list()) == 751
+    assert len(fb.to_list(distance=100)) == 222
+
 
 @httpretty.activate
 def test_flyby(flyby_response):
