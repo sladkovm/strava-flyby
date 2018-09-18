@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.X.X (unreleased)
+0.0.3 (unreleased)
 ------------------
 
 Breaking changes:
@@ -10,7 +10,8 @@ Breaking changes:
 
 New features:
 
-- Stress in zone
+- pipenv
+-
 
 Bug fixes:
 
@@ -45,6 +46,23 @@ Breaking changes:
 New features:
 
 - First release
+
+Bug fixes:
+
+- *add item here*
+
+
+
+0.X.X (unreleased)
+------------------
+
+Breaking changes:
+
+- *add item here*
+
+New features:
+
+- Stress in zone
 
 Bug fixes:
 
