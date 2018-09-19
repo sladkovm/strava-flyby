@@ -9,8 +9,9 @@ from flyby import Flyby, flyby
 def flyby_response():
 
     current_dir = os.path.dirname(os.path.abspath(__file__))
+    f_name = os.path.join(current_dir, 'flyby.json')
 
-    with open(os.path.join(current_dir, 'flyby.json')) as f:
+    with open(f_name, encoding='utf-8') as f:
 
         rv = json.dumps(json.load(f))
 
@@ -59,7 +60,8 @@ def test_constructor_with_real_data(flyby_response):
 def test_flyby(flyby_response):
 
     test_id = 12345
-    httpretty.register_uri(httpretty.GET, "https://nene.strava.com/flyby/matches/{}".format(test_id),
+    httpretty.register_uri(httpretty.GET,
+                           "https://nene.strava.com/flyby/matches/{}".format(test_id),
                            body=flyby_response,
                            content_type="application/json")
 
