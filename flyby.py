@@ -60,6 +60,10 @@ class Flyby():
         ----------
         content : dict
             Deserialized and unprocessed JSON response of the Strava Flyby API
+        activity: dict
+            Requesting activity
+        matches: list
+            Found list of matches
         """
 
         self.content = content
