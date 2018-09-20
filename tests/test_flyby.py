@@ -27,6 +27,7 @@ def test_constructor_with_none():
     assert fb.raw_matches is None
     assert fb.raw_athletes is None
     assert fb.ids is None
+    assert fb.matches is None
 
 
 def test_constructor_with_real_data(flyby_response):
@@ -40,6 +41,7 @@ def test_constructor_with_real_data(flyby_response):
     assert fb.raw_matches == expected['matches']
     assert fb.raw_athletes == expected['athletes']
     assert len(fb.ids) == 751
+    assert len(fb.matches) == 751
 
     assert fb._distance_filter().sum() == 751
     assert fb._distance_filter(distance=100).sum() == 222

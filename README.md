@@ -34,5 +34,5 @@ print(fb.get_ids(distance=(110, 130)))
 
 Dump filtered by distance flattened matches into a list:
 ```
-print(fb.to_list(distance=120, tol=0.1))
+print(fb.matches_to_list(distance=120, tol=0.1))
 ```

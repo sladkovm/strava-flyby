@@ -67,6 +67,8 @@ class Flyby():
             Requesting activity
         raw_matches: list
             Found list of matches
+        matches: List
+            Flattened list of matches ready to use for DataFrame
         """
 
         self.raw_content = content
@@ -225,6 +227,19 @@ class Flyby():
         else:
             return None
 
+    @property
+    def matches(self):
+        """Flattend matches
+
+        Returns
+        -------
+        list of dict ready to use as input for DataFrame
+        """
+
+        if self.raw_content:
+            return self.matches_to_list()
+        else:
+            return None
 
     @property
     def raw_matches(self):
