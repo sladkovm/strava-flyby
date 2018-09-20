@@ -15,6 +15,11 @@ from flyby import flyby
 fb = flyby(activity_id=12345)
 ```
 
+Print deserialized output of Strava Flyby API:
+```
+print(fb.content)
+```
+
 Print raw matches:
 ```
 print(fb.matches)
@@ -22,7 +27,7 @@ print(fb.matches)
 
 Filter by distance in km and print all matched ids:
 ```
-print(fb.ids(distance=(110, 130)))
+print(fb.get_ids(distance=(110, 130)))
 ```
 
 Dump all flattened matches into a list and filter by distance:

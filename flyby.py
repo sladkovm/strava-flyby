@@ -39,16 +39,27 @@ def flyby(activity_id):
 
 
 class Flyby():
-    """Results of Flyby search"""
+    """Results of Flyby search
+
+
+    Attributes
+    ----------
+    content: dict
+        Deserialized and unprocessed JSON reponse of the Strava Flyby API
+
+    """
 
     def __init__(self, content=None):
         """Create Flyby object
 
-        Objects should be initialized using the factory flyby(activity_id) function
+        This objects serves as a convenience wrapper
+        around the Strava Flyby API JSON response. The easiest way to initialite is
+        to call the factory function flyby(activity_id).
 
         Parameters
         ----------
         content : dict
+            Deserialized and unprocessed JSON response of the Strava Flyby API
         """
 
         self.content = content
@@ -99,7 +110,7 @@ class Flyby():
             return json.loads(rv.to_json(orient=kwargs.get('orient', 'records')))
 
 
-    def ids(self, **kwargs):
+    def get_ids(self, **kwargs):
         """IDs returned by Flyby
 
         Parameters
@@ -181,6 +192,18 @@ class Flyby():
 
         return rv
 
+    @property
+    def ids(self):
+        """List of found activities ids
+
+        Returns
+        -------
+        list
+        """
+        if self.content:
+            return self.get_ids()
+        else:
+            return None
 
     @property
     def activity(self):
