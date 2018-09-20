@@ -11,7 +11,9 @@ import os
 import requests
 import json
 import pandas as pd
+import logging
 
+logger = logging.getLogger(__name__)
 
 def flyby(activity_id):
     """Find flybys for a given activity
@@ -26,6 +28,7 @@ def flyby(activity_id):
     obj : Flyby
     """
     __base_url = 'https://nene.strava.com/flyby/matches/'
+    logger.info("Requesting Strava Flyby for activity ID = {}".format(activity_id))
     r = requests.get('{}{}'.format(__base_url, activity_id))
 
     if r.ok:
