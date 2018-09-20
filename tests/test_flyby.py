@@ -51,11 +51,11 @@ def test_constructor_with_real_data(flyby_response):
     assert len(fb.get_ids(distance=100, tol=0.05)) == 68
     assert len(fb.get_ids(distance=(90, 110), tol=0.05)) == 222
 
-    assert len(fb.to_json()) == 751
-    assert len(fb.to_json(distance=100)) == 222
+    assert len(fb.matches_to_json()) == 751
+    assert len(fb.matches_to_json(distance=100)) == 222
 
-    assert len(fb.to_list()) == 751
-    assert len(fb.to_list(distance=100)) == 222
+    assert len(fb.matches_to_list()) == 751
+    assert len(fb.matches_to_list(distance=100)) == 222
 
 
 @httpretty.activate

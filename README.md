@@ -24,7 +24,7 @@ List of implemented methods and attributes:
 ```
 dir(fb)
 >>> [..., 'raw_activity', 'raw_athletes', 'raw_content', 'raw_matches',
-          'ids', 'get_ids', 'to_json', 'to_list']
+          'ids', 'get_ids', 'matches_to_json', 'matches_to_list']
 ```
 
 Filter by distance in km and print all matched ids:

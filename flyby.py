@@ -72,7 +72,7 @@ class Flyby():
         self.raw_content = content
 
 
-    def to_list(self, **kwargs):
+    def matches_to_list(self, **kwargs):
         """Dump flattened matches into a list
 
         Parameters
@@ -84,10 +84,10 @@ class Flyby():
         list
         """
 
-        return self.to_json(**kwargs)
+        return self.matches_to_json(**kwargs)
 
 
-    def to_json(self, path_or_buf=None, **kwargs):
+    def matches_to_json(self, path_or_buf=None, **kwargs):
         """Dump flattened matches into json or a list
 
         Parameters
