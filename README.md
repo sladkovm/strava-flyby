@@ -1,5 +1,6 @@
 # Python client for Strava Flyby
 
+[![PyPI version](https://badge.fury.io/py/strava-flyby.svg)](https://badge.fury.io/py/strava-flyby)
 [![Build Status](https://travis-ci.org/sladkovm/strava-flyby.svg?branch=master)](https://travis-ci.org/sladkovm/strava-flyby)
 
 
