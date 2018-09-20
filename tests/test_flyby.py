@@ -22,10 +22,10 @@ def test_constructor_with_none():
 
     fb = Flyby()
 
-    assert fb.content is None
-    assert fb.activity is None
-    assert fb.matches is None
-    assert fb.athletes is None
+    assert fb.raw_content is None
+    assert fb.raw_activity is None
+    assert fb.raw_matches is None
+    assert fb.raw_athletes is None
     assert fb.ids is None
 
 
@@ -35,11 +35,11 @@ def test_constructor_with_real_data(flyby_response):
 
     fb = Flyby(expected)
 
-    assert fb.content == expected
-    assert fb.activity == expected['activity']
-    assert fb.matches == expected['matches']
-    assert fb.athletes == expected['athletes']
-    assert len(fb.ids) == 751 
+    assert fb.raw_content == expected
+    assert fb.raw_activity == expected['activity']
+    assert fb.raw_matches == expected['matches']
+    assert fb.raw_athletes == expected['athletes']
+    assert len(fb.ids) == 751
 
     assert fb._distance_filter().sum() == 751
     assert fb._distance_filter(distance=100).sum() == 222
@@ -71,7 +71,7 @@ def test_flyby(flyby_response):
 
     fb = flyby(test_id)
 
-    assert fb.content == expected
-    assert fb.activity == expected['activity']
-    assert fb.matches == expected['matches']
-    assert fb.athletes == expected['athletes']
+    assert fb.raw_content == expected
+    assert fb.raw_activity == expected['activity']
+    assert fb.raw_matches == expected['matches']
+    assert fb.raw_athletes == expected['athletes']

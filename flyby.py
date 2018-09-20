@@ -44,7 +44,7 @@ class Flyby():
 
     Attributes
     ----------
-    content: dict
+    raw_content: dict
         Deserialized and unprocessed JSON reponse of the Strava Flyby API
 
     """
@@ -58,15 +58,15 @@ class Flyby():
 
         Parameters
         ----------
-        content : dict
+        raw_content : dict
             Deserialized and unprocessed JSON response of the Strava Flyby API
-        activity: dict
+        raw_activity: dict
             Requesting activity
-        matches: list
+        raw_matches: list
             Found list of matches
         """
 
-        self.content = content
+        self.raw_content = content
 
 
     def to_list(self, **kwargs):
@@ -186,7 +186,7 @@ class Flyby():
         """
 
         rv = []
-        for m in self.matches:
+        for m in self.raw_matches:
 
             _a = m['otherActivity']
             _c = m['correlation']
@@ -204,48 +204,48 @@ class Flyby():
         -------
         list
         """
-        if self.content:
+        if self.raw_content:
             return self.get_ids()
         else:
             return None
 
     @property
-    def activity(self):
+    def raw_activity(self):
         """Requesting activity
 
         Returns
         -------
         dict
         """
-        if self.content:
-            return self.content.get('activity', None)
+        if self.raw_content:
+            return self.raw_content.get('activity', None)
         else:
             return None
 
 
     @property
-    def matches(self):
+    def raw_matches(self):
         """Matches returned by Flyby
 
         Returns
         -------
         list
         """
-        if self.content:
-            return self.content.get('matches', None)
+        if self.raw_content:
+            return self.raw_content.get('matches', None)
         else:
             return None
 
 
     @property
-    def athletes(self):
+    def raw_athletes(self):
         """Athletes returned by Flyby
 
         Returns
         -------
         dict
         """
-        if self.content:
-            return self.content.get('athletes', None)
+        if self.raw_content:
+            return self.raw_content.get('athletes', None)
         else:
             return None
