@@ -11,6 +11,7 @@ pandas = "*"
 pytest = "*"
 httpretty = "*"
 ipython = "*"
+twine = "*"
 
 [requires]
 python_version = "3.7"
