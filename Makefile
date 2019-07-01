@@ -1,19 +1,19 @@
-# help:
-# 	@echo "Usage:"
-# 	@echo "    make help        show this message"
-# 	@echo "    make setup       create virtual environment and install dependencies"
-# 	@echo "    make activate    enter virtual environment"
-# 	@echo "    make test        run the test suite"
-# 	@echo "    exit             leave virtual environment"
+test: 
+	python -m pytest -v
 
-# setup:
-# 	pip install pipenv
-# 	pipenv install --dev --three
-#
-# activate:
-# 	pipenv shell -c
+clean:
+	python setup.py clean
 
-test:
-	pipenv run python -m pytest
+bbuild:
+	python setup.py bbuild
 
-# .PHONY: help test
+test_upload:
+	python setup.py test_upload
+	# twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+
+upload:
+	python setup.py upload
+	# twine upload dist/*
+
+release:
+	git push origin --tags
