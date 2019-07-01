@@ -16,15 +16,10 @@ Create a *flyby* object using the Strava activity ID with a help of the `flyby()
 ```
 from flyby import flyby
 fb = flyby(activity_id=12345)
-print(fb)
->>> <flyby.Flyby object at 0x000002D65BE952E8>
-```
-
-List of implemented methods and attributes:
-```
-dir(fb)
->>> [..., 'raw_activity', 'raw_athletes', 'raw_content', 'raw_matches',
-          'ids', 'get_ids', 'matches_to_json', 'matches_to_list']
+fb
+>>> Flyby object with 17 matches. 
+        Attributes: ids, activity, matches, athletes
+        Methods: matches_to_list(), matches_to_json(), get_ids()
 ```
 
 Filter by distance in km and print all matched ids:
@@ -34,5 +29,5 @@ print(fb.get_ids(distance=(110, 130)))
 
 Dump filtered by distance flattened matches into a list:
 ```
-print(fb.to_list(distance=120, tol=0.1))
+print(fb.matches_to_list(distance=120, tol=0.1))
 ```

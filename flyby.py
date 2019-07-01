@@ -79,6 +79,17 @@ class Flyby():
         self.raw_content = content
 
 
+    def __str__(self):
+        return f"{self.raw_content}"
+
+
+    def __repr__(self):
+        n_matches = len(self.matches)
+        return f"""Flyby object with {n_matches} matches. 
+        Attributes: ids, activity, matches, athletes
+        Methods: matches_to_list(), matches_to_json()"""
+
+
     def matches_to_list(self, **kwargs):
         """Dump flattened matches into a list
 
@@ -196,7 +207,7 @@ class Flyby():
         """
 
         rv = []
-        for m in self.raw_matches:
+        for m in self.matches:
 
             _a = m['otherActivity']
             _c = m['correlation']
@@ -220,7 +231,7 @@ class Flyby():
             return None
 
     @property
-    def raw_activity(self):
+    def activity(self):
         """Requesting activity
 
         Returns
@@ -234,7 +245,7 @@ class Flyby():
 
 
     @property
-    def raw_matches(self):
+    def matches(self):
         """Matches returned by Flyby
 
         Returns
@@ -248,7 +259,7 @@ class Flyby():
 
 
     @property
-    def raw_athletes(self):
+    def athletes(self):
         """Athletes returned by Flyby
 
         Returns
