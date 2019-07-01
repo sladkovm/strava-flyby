@@ -3,4 +3,5 @@ build/
 dist/
 strava_flyby.egg-info/
 .pytest_cache/
-.vscode
+__pycache__/
+.vscode/

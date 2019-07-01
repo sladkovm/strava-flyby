@@ -1,17 +1,37 @@
 Changelog
 =========
 
-0.0.3 (unreleased)
+
+0.0.5 (2018-12-28)
+------------------
+
+Bug fixes:
+
+- updated dependencies
+
+0.0.4 (2018-12-28)
+------------------
+
+Bug fixes:
+
+- updated dependencies
+
+0.0.3 (2018-09-20)
 ------------------
 
 Breaking changes:
 
-- *add item here*
+- ids becomes and attribute wrapper
+- get_ids() is a full function to filter the ids
+- explicit prefixes raw_ for all attributes that return original data or their
+subset
+- matches is an attribute wrapper that returns the flattened ready to use in
+DataFrame list of matched activities
 
 New features:
 
 - pipenv
--
+- travisio
 
 Bug fixes:
 
