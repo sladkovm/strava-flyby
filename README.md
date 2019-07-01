@@ -11,7 +11,11 @@ $ pip install strava-flyby
 
 ## Usage
 
-*strava-flyby* provides a convenience object wrapping of the *Strava Labs Flyby API* response. Next to providing a direct access to the unmodified content of the *Flyby API* response, the object will expose number of convenience attributes and methods to access the list of activity ids, matches and athletes.  
+*strava-flyby* provides a convenience object wrapping of the *Strava Labs Flyby API* response. Next to providing a direct access to the unmodified content of the *Flyby API* response, the object will expose number of convenience attributes and methods to access the list of *activity*, *ids*, *matches* and *athletes*.  
+
+
+Jupyter notebook example with real data is [here](https://github.com/sladkovm/strava-flyby/blob/master/examples/Flyby%20quickstart.ipynb)
+
 
 Create a *flyby* object using the Strava activity ID with a help of the `flyby()` factory function:
 ```python
