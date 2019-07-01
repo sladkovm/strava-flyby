@@ -2,7 +2,7 @@ import pytest
 import json
 import os
 import httpretty
-from flyby import Flyby, flyby
+from flyby import Flyby, flyby, _request_strava_flyby
 
 
 @pytest.fixture
@@ -16,6 +16,16 @@ def flyby_response():
         rv = json.dumps(json.load(f))
 
     return rv
+
+
+def test_request_strava_flyby():
+    id = 2488860384
+    content = _request_strava_flyby(id)
+    assert content is not None
+    assert 'activity' in content.keys()
+    assert 'matches' in content.keys()
+    assert 'athletes' in content.keys()
+    assert len(content['matches']) > 1
 
 
 def test_constructor_with_none():

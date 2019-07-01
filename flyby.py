@@ -11,9 +11,8 @@ import os
 import requests
 import json
 import pandas as pd
-import logging
+from loguru import logger
 
-logger = logging.getLogger(__name__)
 
 def flyby(activity_id):
     """Find flybys for a given activity
@@ -27,17 +26,25 @@ def flyby(activity_id):
     -------
     obj : Flyby
     """
+    return Flyby(_request_strava_flyby(activity_id))
+
+
+def _request_strava_flyby(activity_id):
+    """Request the Strava Labs Flyby and return the json content
+    
+    Returns:
+    --------
+    dict with keys 'activity', 'matches', 'athletes'
+    """
     __base_url = 'https://nene.strava.com/flyby/matches/'
+    __headers = {'referer': 'https://labs.strava.com/flyby/viewer/',
+                 'origin': 'https://labs.strava.com'}
     logger.info("Requesting Strava Flyby for activity ID = {}".format(activity_id))
-    r = requests.get('{}{}'.format(__base_url, activity_id))
-
+    r = requests.get('{}{}'.format(__base_url, activity_id), headers=__headers)
     if r.ok:
-
         content = json.loads(r.text)
-        return Flyby(content)
-
+        return content
     else:
-
         raise ConnectionError("Flyby returned {}".format(r.status_code))
 
 

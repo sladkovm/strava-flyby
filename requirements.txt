@@ -2,3 +2,4 @@ pytest
 requests
 pandas
 httpretty
+loguru

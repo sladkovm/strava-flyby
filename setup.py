@@ -12,7 +12,7 @@ EMAIL = 'sladkovm@gmail.com'
 AUTHOR = 'Maksym Sladkov'
 # What packages are required for this module to be executed?
 REQUIRED = [
-    'pandas', 'requests'
+    'pandas', 'requests', 'loguru'
 ]
 
 # The rest you shouldn't have to touch too much :)

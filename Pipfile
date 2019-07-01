@@ -6,10 +6,14 @@ name = "pypi"
 [packages]
 requests = "*"
 pandas = "*"
+loguru = "*"
 
 [dev-packages]
 pytest = "*"
 httpretty = "*"
+pylint = "*"
+strava-flyby = {editable = true,path = "."}
+jupyter = "*"
 
 [requires]
 python_version = "3.6"
