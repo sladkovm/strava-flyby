@@ -1,6 +1,22 @@
 Changelog
 =========
 
+0.0.6 (2019-07-01)
+------------------
+
+Breaking changes:
+
+- Attributes raw_activity, raw_matches, raw_athletes are accessed as activity, matches and athletes respectively
+
+New features:
+
+- added __str__ and __repr__ to Flyby object
+
+Bug fixes:
+
+- Fixed requests to Strava Labs
+
+
 
 0.0.5 (2018-12-28)
 ------------------
@@ -36,21 +52,6 @@ New features:
 Bug fixes:
 
 - *add item here*
-
-0.0.6 (2019-07-01)
-------------------
-
-Breaking changes:
-
-- Attributes raw_activity, raw_matches, raw_athletes are accessed as activity, matches and athletes respectively
-
-New features:
-
-- added __str__ and __repr__ to Flyby object
-
-Bug fixes:
-
-- Fixed requests to Strava Labs
 
 
 0.0.2 (2018-03-05)
